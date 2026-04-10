@@ -1,0 +1,61 @@
+pipeline {
+    agent any
+
+    environment {
+        IMAGE_NAME   = "nginx-demo"
+        IMAGE_TAG    = "latest"
+        K8S_DIR      = "nginx-app/k8s"
+        DEPLOY_NAME  = "nginx-demo"
+        NAMESPACE    = "default"
+        APP_URL      = "http://my-nginx.local"
+    }
+
+    stages {
+
+        stage('Checkout') {
+            steps {
+                echo "Checking out source code..."
+                checkout scm
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                echo "Building Docker image: ${IMAGE_NAME}:${IMAGE_TAG}"
+                sh """
+                    eval \$(minikube docker-env)
+                    docker build -t ${IMAGE_NAME}:${IMAGE_TAG} ./nginx-app
+                """
+            }
+        }
+
+        stage('Deploy to Kubernetes') {
+            steps {
+                echo "Applying Kubernetes manifests..."
+                sh """
+                    kubectl apply -f ${K8S_DIR}/deployment.yaml
+                    kubectl apply -f ${K8S_DIR}/service.yaml
+                """
+            }
+        }
+
+        stage('Verify Deployment') {
+            steps {
+                echo "Waiting for deployment to be ready..."
+                sh """
+                    kubectl rollout status deployment/${DEPLOY_NAME} \
+                        -n ${NAMESPACE} --timeout=60s
+                """
+            }
+        }
+    }
+
+    post {
+        success {
+            echo "Deployment successful! Access at ${APP_URL}"
+        }
+        failure {
+            echo "Deployment failed. Check the logs above."
+        }
+    }
+}
