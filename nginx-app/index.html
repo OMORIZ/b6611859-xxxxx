@@ -1,11 +1,130 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Jenkins CI/CD Pipeline 2</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Jenkins CI/CD Demo 1</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #1a1a3e 0%, #16213e 50%, #0f3460 100%);
+      font-family: 'Segoe UI', Arial, sans-serif;
+      color: #fff;
+    }
+
+    .container {
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    .gear-icon {
+      font-size: 52px;
+      margin-bottom: 20px;
+      display: block;
+      opacity: 0.9;
+    }
+
+    h1 {
+      font-size: 2.6rem;
+      font-weight: 700;
+      color: #00cfff;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      font-size: 1rem;
+      color: #a0aec0;
+      margin-bottom: 32px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 32px 40px;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #22c55e;
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding: 8px 28px;
+      border-radius: 999px;
+      margin-bottom: 28px;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .info-item {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+      padding: 14px 16px;
+      text-align: left;
+    }
+
+    .info-label {
+      font-size: 0.75rem;
+      color: #94a3b8;
+      margin-bottom: 4px;
+    }
+
+    .info-value {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .footer {
+      margin-top: 28px;
+      font-size: 0.8rem;
+      color: #64748b;
+    }
+  </style>
 </head>
-<body style="text-align:center; margin-top:50px;">
-  <h1>Jenkins CI/CD Pipeline 2</h1>
-  <p>Deployed on Kubernetes via Jenkins</p>
-  <h2 style="color:green;">Deployed Successfully</h2>
+<body>
+  <div class="container">
+    <span class="gear-icon">⚙️</span>
+    <h1>Jenkins CI/CD Pipeline 2</h1>
+    <p class="subtitle">Deployed on Kubernetes via Jenkins</p>
+
+    <div class="card">
+      <div class="badge">Deployed Successfully</div>
+
+      <div class="info-grid">
+        <div class="info-item">
+          <div class="info-label">Platform</div>
+          <div class="info-value">Kubernetes</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">Domain</div>
+          <div class="info-value">my-nginx.local</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">Web Server</div>
+          <div class="info-value">Nginx</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">CI/CD</div>
+          <div class="info-value">Jenkins</div>
+        </div>
+      </div>
+    </div>
+
+    <p class="footer">Jenkins-Example • Deployed by Jenkins Pipeline</p>
+  </div>
 </body>
 </html>
